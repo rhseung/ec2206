@@ -32,7 +32,7 @@ def skip(arr: list):
     return str(arr) if len(arr) <= 50 else f"[...{len(arr)} items]"
 
 
-def sort_test(sort_function):
+def sort_test(sort_function, ignore_print=False):
     for i, (input_case, output_case) in enumerate(test_cases):
         try:
             input_copied = input_case.copy()
@@ -71,7 +71,9 @@ def sort_test(sort_function):
                 print(f"function '{sort_function.__name__}' has failed a test case!")
                 return False
             else:
-                print(f"✅ Test case #{i + 1}/{len(test_cases)} passed! ({duration:.5f} s)")
+                if not ignore_print:
+                    print(f"✅ Test case #{i + 1}/{len(test_cases)} passed! ({duration:.5f} s)")
 
-    print(f"function '{sort_function.__name__}' has passed all test cases!")
+    if not ignore_print:
+        print(f"function '{sort_function.__name__}' has passed all test cases!")
     return True
