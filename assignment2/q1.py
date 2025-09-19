@@ -1,20 +1,42 @@
-def swapping(A: list[int], i: int, j: int) -> None:
-    if j < i:
-        if A[j] > A[j + 1]:
-            A[j], A[j + 1] = A[j + 1], A[j]
-        swapping(A, i, j + 1)
+from collections import deque
 
 
-def loop(A: list[int], i: int) -> None:
-    if i > 0:
-        swapping(A, i, 0)
-        loop(A, i - 1)
+def RemoveBrackets(strParam: str) -> int:
+    """
+    >>> RemoveBrackets("(()))")
+    1
+    >>> RemoveBrackets("(())()(((")
+    3
+    >>> RemoveBrackets("(()(")
+    2
+    >>> RemoveBrackets("()")
+    0
+    >>> RemoveBrackets(")(()")
+    2
+    >>> RemoveBrackets("((()))")
+    0
+    >>> RemoveBrackets("()()()()()()()()((((((")
+    6
+    >>> RemoveBrackets(")(()")
+    2
+    >>> RemoveBrackets("((()))()()(()))")
+    1
+    >>> RemoveBrackets(")(())")
+    1
+    """
+
+    stack = deque()
+    for c in strParam:
+        if c == '(':
+            stack.append(c)
+        elif c == ')':
+            if stack and stack[-1] == '(':
+                stack.pop()
+            else:
+                stack.append(c)
+
+    return len(stack)
 
 
-def f(strParam: str) -> list[int]:
-    A = list(map(int, strParam.split()))
-    loop(A, len(A) - 1)
-    return A
-
-
-print(f(input()))
+# keep this function call here
+print(RemoveBrackets(input()))
