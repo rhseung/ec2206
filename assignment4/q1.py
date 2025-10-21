@@ -1,6 +1,3 @@
-from collections import defaultdict
-
-
 def ArrayAdditionI(arr: list[int]) -> bool:
     """
     >>> ArrayAdditionI([4, 6, 23, 10, 1, 3])
@@ -28,18 +25,14 @@ def ArrayAdditionI(arr: list[int]) -> bool:
     """
 
     arr.sort()
-    A = arr[:-1]
     k = arr[-1]
+    A = arr[:-1]
 
-    DP = defaultdict(int)
-    DP[0] = 1
-
+    P = {0}
     for a in A:
-        K = list(DP.keys())
-        for s in K:
-            DP[s + a] += DP[s]
+        P |= {p + a for p in P}
 
-    return DP[k] > 0
+    return k in P
 
 
 print(ArrayAdditionI(list(map(int, input().split()))))

@@ -34,21 +34,12 @@ def DynamicAdventure(arr: list[int]) -> int:
     DP = [-inf] * n
     DP[0] = A[0]
 
-    def topdown(i: int) -> int:
-        if i == 0:
-            return A[0]
-        elif DP[i] != -inf:
-            return DP[i]
-
-        ret = -inf
+    for i in range(1, n):
         for x in range(1, x_max + 1):
             if i - x >= 0:
-                ret = max(ret, topdown(i - x) + A[i])
+                DP[i] = max(DP[i], DP[i - x] + A[i])
 
-        DP[i] = ret
-        return DP[i]
-
-    return topdown(n - 1)
+    return DP[n - 1]
 
 
 print(DynamicAdventure(list(map(int, input().split()))))
