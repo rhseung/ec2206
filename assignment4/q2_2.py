@@ -1,7 +1,7 @@
 import sys
 
 
-def TheDynamicAdventure(arr: list[int]) -> int:
+def TheDynamicAdventure(arr):
     """
     >>> TheDynamicAdventure([2,2,4,-3,-6,10,-7,5,0])
     18
@@ -34,12 +34,13 @@ def TheDynamicAdventure(arr: list[int]) -> int:
     DP = [-inf] * n
     DP[0] = A[0]
 
-    for i in range(1, n):
+    for i in range(n):
         for x in range(1, x_max + 1):
-            if i - x >= 0:
+            if i >= x:
                 DP[i] = max(DP[i], DP[i - x] + A[i])
 
     return DP[n - 1]
 
 
-print(TheDynamicAdventure(list(map(int, input().split()))))
+if __name__ == "__main__":
+    print(TheDynamicAdventure(list(map(int, input().split()))))
