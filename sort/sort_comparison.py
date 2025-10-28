@@ -19,10 +19,10 @@ with timeit('selection_sort'):
     sort_test(selection_sort, ignore_print=True)
 
 with timeit('insertion_sort'):
-    sort_test(insertion_sort, ignore_print=True)
+    sort_test(my_insertion_sort, ignore_print=True)
 
 with timeit('merge_sort'):
-    sort_test(merge_sort, ignore_print=True)
+    sort_test(my_merge_sort, ignore_print=True)
 
 with timeit('quick_sort'):
-    sort_test(quick_sort, ignore_print=True)
+    sort_test(my_quick_sort, ignore_print=True)
